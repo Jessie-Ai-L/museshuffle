@@ -17,3 +17,9 @@ This build upgrades all 10 generators from working MVPs to more search-intent-sp
 - Controls remain responsive on mobile
 
 Deploy the contents as the next full-site build. No URL changes.
+
+
+## v1.8.3 Book Idea hotfix
+- Fixes Book Idea Generator tone-selection runtime error that froze results.
+- Genre and Tone now both affect output.
+- Cache-busts app/data assets to ensure browsers load the fix.
