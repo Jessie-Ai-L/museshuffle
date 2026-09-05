@@ -3,7 +3,6 @@
   "name": "museshuffle",
   "compatibility_date": "2026-09-05",
   "assets": {
-    "directory": ".",
-    "not_found_handling": "single-page-application"
+    "directory": "./public"
   }
 }

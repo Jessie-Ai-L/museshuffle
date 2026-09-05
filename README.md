@@ -1,7 +1,16 @@
 # MuseShuffle
 
-Production deployment shell for museshuffle.com.
+MuseShuffle website deployment scaffold.
 
-## Cloudflare
-- Build command: leave blank
-- Deploy command: `npx wrangler deploy`
+## Cloudflare deployment
+
+This repository is configured for Cloudflare Workers static assets via Wrangler.
+Only files inside `public/` are deployed as website assets.
+
+Deploy command:
+
+```bash
+npx wrangler deploy
+```
+
+Version: 1.0.1 deploy fix.
