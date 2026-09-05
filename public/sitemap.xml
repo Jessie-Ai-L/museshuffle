@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://museshuffle.com/</loc></url>
+  <url><loc>https://museshuffle.com/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://museshuffle.com/generators.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/random-drawing-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/drawing-prompt-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/random-theme-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/drawing-idea-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/random-character-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/art-idea-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/art-prompt-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/book-idea-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/story-ideas-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://museshuffle.com/roleplay-scenario-generator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

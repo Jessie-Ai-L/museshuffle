@@ -1,18 +1,10 @@
-# MuseShuffle
+# MuseShuffle v1.1.0
 
-MuseShuffle website deployment scaffold.
+Complete overwrite-ready production build for museshuffle.com.
 
-## Cloudflare deployment
+Deployment:
+- Cloudflare Worker static assets from `public/`
+- Deploy command: `npx wrangler deploy`
+- Production branch: `main`
 
-This repository is configured for Cloudflare Workers static assets via Wrangler.
-Only files inside `public/` are deployed as website assets.
-
-Deploy command:
-
-```bash
-npx wrangler deploy
-```
-
-Version: 1.0.1 deploy fix.
-Deployment connection test.
-Cloudflare deployment test 2.
+Includes homepage, 10 intent-specific generators, SEO metadata, sitemap, robots.txt, and 404 page.
