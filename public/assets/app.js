@@ -1,5 +1,5 @@
 
-const D = window.MUSE_DATA || {};
+let D = window.MUSE_DATA || {};
 function pick(a){ return a[Math.floor(Math.random()*a.length)] }
 function byId(id){ return document.getElementById(id) }
 function val(id, fallback="Any"){ const el=byId(id); return el?el.value:fallback }
@@ -88,7 +88,7 @@ function generate(mode){
 document.addEventListener("DOMContentLoaded",()=>{
   const mode=document.body.dataset.mode;
   if(mode){
-    fetch("/assets/data.json").then(r=>r.json()).then(d=>{window.MUSE_DATA=d;generate(mode)}).catch(()=>{byId("result").innerHTML="<p>Could not load generator data. Please refresh.</p>"});
+    fetch("/assets/data.json").then(r=>r.json()).then(d=>{window.MUSE_DATA=d;D=d;generate(mode)}).catch(()=>{byId("result").innerHTML="<p>Could not load generator data. Please refresh.</p>"});
     byId("shuffle").addEventListener("click",()=>generate(mode));
     byId("copy").addEventListener("click",copyResult);
   }
