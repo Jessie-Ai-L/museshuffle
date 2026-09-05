@@ -5,6 +5,42 @@ const val=(id,fallback="Any")=>byId(id)?byId(id).value:fallback;
 const cap=s=>s?s.charAt(0).toUpperCase()+s.slice(1):s;
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const subjectFor=(kind)=>{const pools={Character:D.character_subjects,Creature:D.creature_subjects,Object:D.object_subjects,Scene:D.scene_subjects};return kind&&kind!=="Anything"&&kind!=="Any"&&pools[kind]?pick(pools[kind]):pick(D.subjects)};
+
+const subjectTypeFor=(s)=>{
+ if(D.character_subjects?.includes(s)) return "Character";
+ if(D.creature_subjects?.includes(s)) return "Creature";
+ if(D.object_subjects?.includes(s)) return "Object";
+ if(D.scene_subjects?.includes(s)) return "Scene";
+ return "Anything";
+};
+const actionFor=(s)=>{
+ const type=subjectTypeFor(s);
+ const pools={
+  Character:["waiting for a signal","protecting a secret","searching for a missing map","exploring an unknown place"],
+  Creature:["watching from the shadows","following a mysterious trail","guarding a hidden place","discovering something unusual"],
+  Object:["covered in strange markings","casting an unusual shadow","discovered in an unexpected place","surrounded by forgotten memories"],
+  Scene:["hiding an ancient secret","transformed by an unusual event","waiting to be discovered","holding a forgotten story"]
+ };
+ return pick(pools[type]||D.actions);
+};
+const techniqueFor=(m)=>{
+ const pools={
+  Watercolor:["wet-on-wet washes","transparent layered washes","soft color bleeding","paper texture exploration"],
+  Charcoal:["dramatic value study","expressive smudging","high contrast shading","tonal exploration"],
+  Gouache:["opaque color blocking","flat shape composition","layered paint texture","limited palette study"],
+  "Digital painting":["cinematic concept art","painterly brushwork","atmospheric lighting","textured digital strokes"]
+ };
+ return pick(pools[m]||D.styles);
+};
+const toneBoost=(tone)=>{
+ const map={
+  Romantic:"relationship tension and emotional choices",
+  Dark:"betrayal, moral compromise, and unsettling consequences",
+  Suspenseful:"hidden threats, uncertainty, and a race against time"
+ };
+ return map[tone]||"";
+};
+
 const moodFor=tone=>{const map={Light:["hopeful","bright","gentle"],Dark:["ominous","melancholic","eerie"],Dreamy:["dreamlike","ethereal","surreal"],Epic:["heroic","grand","dramatic"],Playful:["playful","whimsical","cheerful"],Calm:["calm","quiet","serene"],Energetic:["energetic","bold","dynamic"],Friendly:["warm","welcoming","hopeful"],Dramatic:["dramatic","high-stakes","emotional"],Funny:["playful","awkward","witty"],Tense:["tense","uneasy","urgent"],Romantic:["tender","intimate","yearning"]};return tone&&tone!=="Any"&&map[tone]?pick(map[tone]):pick(D.moods)};
 const genreKey=g=>{if(!g||g==="Any")return null;return Object.keys(D.genre_packs||{}).find(k=>k.toLowerCase()===g.toLowerCase())||null};
 const genrePack=g=>{const k=genreKey(g);return k?D.genre_packs[k]:null};
@@ -15,14 +51,14 @@ function copyResult(){const result=byId("result"),status=byId("copy-status");if(
 function fallbackCopy(text,done){const t=document.createElement("textarea");t.value=text;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();done()}
 function build(mode){let title="",body="",list=[];const genre=val("genre"),difficulty=val("difficulty","Medium"),context=val("context"),medium=val("medium"),tone=val("tone");
  switch(mode){
- case "drawing_random":{const kind=val("drawing-type","Anything"),complexity=val("complexity","Medium"),s=subjectFor(kind),action=pick(D.actions),setting=pick(D.settings);title=`${s} ${action}`;body=complexity==="Simple"?`Draw ${s}. Focus on one clear silhouette or gesture.`:complexity==="Detailed"?`Draw ${s} ${action} ${setting}. Add ${pick(D.constraints)}, and push a ${pick(D.moods)} atmosphere.`:`Draw ${s} ${action} ${setting}.`;break}
- case "drawing_prompt":{const focus=val("focus"),constraint=difficulty==="Easy"?pick(D.easy_constraints):difficulty==="Challenging"?pick(D.hard_constraints):pick(D.constraints);title="Your drawing prompt";if(focus==="Composition"){list=[`Composition: ${pick(D.composition_prompts||D.constraints)}`,`Setting: ${pick(D.settings)}`,`Mood: ${pick(D.moods)}`,`Style: ${pick(D.styles)}`,`Challenge: ${constraint}`,`Difficulty: ${difficulty}`]}else{const map={Character:"Character",Object:"Object",Environment:"Scene"},s=subjectFor(map[focus]||"Anything");list=[`Subject: ${s} ${pick(D.actions)}`,`Setting: ${pick(D.settings)}`,`Mood: ${pick(D.moods)}`,`Style: ${pick(D.styles)}`,`Challenge: ${constraint}`,`Difficulty: ${difficulty}`]}break}
+ case "drawing_random":{const kind=val("drawing-type","Anything"),complexity=val("complexity","Medium"),s=subjectFor(kind),action=actionFor(s),setting=pick(D.settings);title=`${s} ${action}`;body=complexity==="Simple"?`Draw ${s}. Focus on one clear silhouette or gesture.`:complexity==="Detailed"?`Draw ${s} ${action} ${setting}. Add ${pick(D.constraints)}, and push a ${pick(D.moods)} atmosphere.`:`Draw ${s} ${action} ${setting}.`;break}
+ case "drawing_prompt":{const focus=val("focus"),constraint=difficulty==="Easy"?pick(D.easy_constraints):difficulty==="Challenging"?pick(D.hard_constraints):pick(D.constraints);title="Your drawing prompt";if(focus==="Composition"){list=[`Composition: ${pick(D.composition_prompts||D.constraints)}`,`Setting: ${pick(D.settings)}`,`Mood: ${pick(D.moods)}`,`Style: ${pick(D.styles)}`,`Challenge: ${constraint}`,`Difficulty: ${difficulty}`]}else{const map={Character:"Character",Object:"Object",Environment:"Scene"},s=subjectFor(map[focus]||"Anything");list=[`Subject: ${s} ${actionFor(s)}`,`Setting: ${pick(D.settings)}`,`Mood: ${pick(D.moods)}`,`Style: ${pick(D.styles)}`,`Challenge: ${constraint}`,`Difficulty: ${difficulty}`]}break}
  case "theme":{const t=tone!=="Any"?pick(D.themes_by_tone[tone]||D.themes):pick(D.themes);title=t;body=context==="Any"?`Use “${t}” as the central theme for your next creative project.`:`Use “${t}” as the central theme for your next ${context.toLowerCase()} project. Explore it through a ${moodFor(tone)} lens.`;break}
  case "drawing_idea":{const focus=val("focus"),s=subjectFor(focus==="Any"?"Anything":focus),constraint=difficulty==="Easy"?pick(D.easy_constraints):difficulty==="Challenging"?pick(D.hard_constraints):pick(D.constraints);title=`Draw ${s}`;list=[`Scene: ${pick(D.settings)}`,`Action: ${pick(D.actions)}`,`Visual twist: ${constraint}`,`Mood: ${pick(D.moods)}`,`Difficulty: ${difficulty}`];break}
  case "character":{const selected=val("character-genre"),g=selected==="Any"?randomGenre():selected,pack=genrePack(g),depth=val("depth","Full"),role=pack?pick(pack.roles):pick(D.roles);title=pick(D.names);list=[`Genre: ${g}`,`Role: ${role}`,`Personality: ${pick(D.traits)}`,`Flaw: ${pick(D.flaws)}`];if(depth==="Full")list.push(`Appearance cue: ${pick(D.appearance_cues)}`,`Goal: ${pack?pick(pack.goals):pick(D.roleplay_goals)}`,`Secret: ${pack?pick(pack.secrets):pick(D.secrets)}`);break}
  case "art_idea":{const m=medium==="Any"?pick(D.mediums):medium,mood=moodFor(tone);title=`${cap(m)} piece: ${pick(D.themes)}`;list=[`Subject: ${pick(D.subjects)}`,`Setting: ${pick(D.settings)}`,`Mood: ${mood}`,`Palette idea: ${pick(D.palettes)}`,`Composition challenge: ${pick(D.constraints)}`];break}
- case "art_prompt":{const m=medium==="Any"?pick(D.mediums):medium,detail=val("prompt-length","Detailed"),s=pick(D.subjects),setting=pick(D.settings),mood=pick(D.moods),style=pick(D.styles);title="Your art prompt";body=detail==="Short"?`Create a ${m} artwork featuring ${s} ${setting}.`:`Create a ${m} artwork featuring ${s} ${setting}. Give it a ${mood} mood, use a ${style} approach, explore ${pick(D.palettes)}, and ${pick(D.constraints)}.`;break}
- case "book":{const g=genre==="Any"?randomGenre():genre,pack=genrePack(g),bt=val("book-tone"),role=pack?pick(pack.roles):pick(D.roles),premise=pack?pick(pack.premises):pick(D.generic_premises),goal=pack?pick(pack.goals):pick(D.roleplay_goals),twist=pack?pick(pack.twists):pick(D.twists);title=`${g} book idea`;list=[`Protagonist: ${article(role)} ${role} who is ${pick(D.traits)}`,`Premise: ${cap(premise)}`,`Central conflict: ${cap(goal)}`,`Stakes: ${cap(pick(D.stakes))}`,`Twist: ${cap(twist)}`];if(bt!=="Any")list.push(`Tone: ${bt}`);break}
+ case "art_prompt":{const m=medium==="Any"?pick(D.mediums):medium,detail=val("prompt-length","Detailed"),s=pick(D.subjects),setting=pick(D.settings),mood=pick(D.moods),style=techniqueFor(m);title="Your art prompt";body=detail==="Short"?`Create a ${m} artwork featuring ${s} ${setting}.`:`Create a ${m} artwork featuring ${s} ${setting}. Give it a ${mood} mood, use a ${style} approach, explore ${pick(D.palettes)}, and ${pick(D.constraints)}.`;break}
+ case "book":{const g=genre==="Any"?randomGenre():genre,pack=genrePack(g),bt=val("book-tone"),role=pack?pick(pack.roles):pick(D.roles),premise=pack?pick(pack.premises):pick(D.generic_premises),goal=pack?pick(pack.goals):pick(D.roleplay_goals),twist=pack?pick(pack.twists):pick(D.twists),toneEffect=toneBoost(bt);if(bt!=="Any"&&toneEffect){premise= `${premise} with ${toneEffect}`;} title=`${g} book idea`;list=[`Protagonist: ${article(role)} ${role} who is ${pick(D.traits)}`,`Premise: ${cap(premise)}`,`Central conflict: ${cap(goal)}`,`Stakes: ${cap(pick(D.stakes))}`,`Twist: ${cap(twist)}`];if(bt!=="Any")list.push(`Tone: ${bt}`);break}
  case "story":{const g=genre==="Any"?randomGenre():genre,pack=genrePack(g),detail=val("story-length","Detailed"),role=pack?pick(pack.roles):pick(D.roles),premise=pack?pick(pack.premises):pick(D.generic_premises),goal=pack?pick(pack.goals):pick(D.roleplay_goals),twist=pack?pick(pack.twists):pick(D.twists),setting=pack?.settings?pick(pack.settings):pick(D.settings);title=`${g} story seed`;body=`${cap(article(role))} ${role} in ${setting.replace(/^(in|at|on|inside|beside)\s+/i,"")} is pulled into trouble when ${premise}. Their immediate goal is to ${goal}.`;if(detail==="Detailed")list=[`Complication: ${cap(twist)}`,`Stakes: ${cap(pick(D.stakes))}`,`Opening image: ${cap(pick(D.opening_images))}`];break}
  case "roleplay":{const selected=val("rp-genre"),g=selected==="Any"?randomGenre():selected,pack=genrePack(g),rt=val("rp-tone"),roles=pack?.roles||D.roles,goals=pack?.goals||D.roleplay_goals,secrets=pack?.secrets||D.secrets,r1=pick(roles),r2=pick(roles.filter(x=>x!==r1));title="Roleplay scenario";list=[`Genre: ${g}`,`Setting: ${pack?.settings?pick(pack.settings):pick(D.roleplay_settings)}`,`Role A: ${article(r1)} ${r1} who is ${pick(D.traits)}`,`Role B: ${article(r2)} ${r2} who ${pick(D.flaws)}`,`Objective: ${cap(pick(goals))}`,`Tension: ${cap(pick(secrets))}`,`Opening line: ${pick(D.opening_lines)}`];if(rt!=="Any")list.splice(1,0,`Tone: ${rt} (${moodFor(rt)})`);break}
  } return {title,body,list}}
