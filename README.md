@@ -12,3 +12,9 @@ Production-ready static site for Cloudflare Workers/Assets.
 - Kept all 10 generator URLs, SEO metadata, sitemap, robots.txt, and generator logic intact.
 
 Deploy the whole project as before. No manual DNS changes are needed for an already-bound domain.
+
+
+## v1.7.1 mobile fix
+- Forces tool pages to a true one-column layout below 800px.
+- Prevents result cards and controls from collapsing into narrow desktop grid columns.
+- Tunes mobile typography, header, side note, actions, related tools, FAQ, and footer.

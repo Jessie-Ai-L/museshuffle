@@ -127,3 +127,79 @@ body{background:var(--paper);-webkit-font-smoothing:antialiased;text-rendering:o
   .hero .btn{width:max-content!important}.controls{grid-template-columns:1fr}.tool-shell{gap:30px}.side-note{border-top-color:var(--accent);padding-top:18px}
   .content>h2{margin-top:50px}.content>h2:not(:first-child):before{margin-bottom:26px}.tool-links{grid-template-columns:1fr}.mini:nth-child(odd){border-right:0;padding-right:34px}.mini:nth-child(even){padding-left:0}.mini{min-height:0;padding-top:16px;padding-bottom:18px}
 }
+
+/* v1.7.1 — mobile layout hardening (iPhone / narrow viewport) */
+@media (max-width: 800px){
+  html,body{max-width:100%;overflow-x:hidden}
+  .wrap{width:calc(100% - 32px);max-width:none}
+
+  /* Header */
+  .nav{height:66px;gap:16px}
+  .brand-logo{width:128px;height:38px;flex:0 0 128px}
+  .brand-logo img{width:128px;max-width:100%;transform:scale(1.18);transform-origin:left center}
+  .nav-links{gap:18px;font-size:.82rem;white-space:nowrap}
+  .nav-links:after{display:none!important}
+
+  /* Tool heading */
+  .tool-hero{padding:34px 0 22px}
+  .crumbs{display:flex;flex-wrap:wrap;gap:3px;font-size:.76rem;line-height:1.55;margin-bottom:26px}
+  .tool-hero .eyebrow{font-size:.68rem;letter-spacing:.22em}
+  .tool-hero h1{font-size:clamp(3.2rem,14.5vw,4rem)!important;line-height:.91;letter-spacing:-.055em;max-width:100%;margin:22px 0 18px;overflow-wrap:normal;word-break:normal}
+  .tool-hero .lead{font-size:1.05rem;line-height:1.55;max-width:100%}
+
+  /* Critical: desktop two-column grid must collapse on phones */
+  .tool-shell{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    gap:34px!important;
+    width:calc(100% - 32px)!important;
+    max-width:none!important;
+    margin:18px auto 68px!important;
+  }
+  .tool-shell > *{min-width:0!important;width:100%!important}
+  .generator{min-width:0;width:100%;padding:18px 0 26px}
+  .controls{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:12px;width:100%}
+  .field{min-width:0;width:100%}
+  .field select{display:block;width:100%;max-width:100%;min-height:46px}
+
+  /* Result card must never become a narrow column */
+  .result{width:100%;min-width:0;min-height:245px;padding:34px 22px 30px;overflow:hidden}
+  .result:before{top:13px;right:14px;font-size:.55rem;letter-spacing:.10em}
+  .result:after{right:17px;bottom:12px;font-size:1.25rem}
+  .result .meta{font-size:.64rem;line-height:1.45;margin:10px 0 14px;padding-right:72px}
+  .result h3{font-size:clamp(2rem,10vw,2.65rem)!important;line-height:1.04;max-width:100%;overflow-wrap:break-word;word-break:normal}
+  .result p,.result li{font-size:.98rem;line-height:1.58;overflow-wrap:break-word}
+  .actions{display:flex;flex-direction:row;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .actions .btn{min-width:0!important;width:auto!important;min-height:44px;padding:11px 17px!important;font-size:.9rem}
+
+  /* Supporting note belongs below the generator on mobile */
+  .side-note{position:static!important;top:auto!important;width:100%!important;margin:0!important;padding:20px 0 0!important;border-top:1px solid var(--accent)!important}
+  .side-note h3{font-size:1.75rem;line-height:1.05;margin-bottom:12px}
+  .side-note p{font-size:.95rem;line-height:1.6;max-width:34rem}
+  .side-note ul{margin:15px 0 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 14px}
+  .side-note li{font-size:.88rem;padding:4px 0}
+
+  /* Long-form content: readable editorial scale, not desktop-sized */
+  .section{padding:46px 0 58px}
+  .content{width:100%;max-width:100%}
+  .content>h2,.content h2{font-size:clamp(2rem,9.3vw,2.65rem)!important;line-height:1.02;letter-spacing:-.04em;margin-top:48px}
+  .content>h2:first-child{margin-top:0}
+  .content p,.content li{font-size:1rem;line-height:1.68;max-width:100%}
+  .tool-links{grid-template-columns:minmax(0,1fr)!important}
+  .mini,.mini:nth-child(odd),.mini:nth-child(even){padding:16px 34px 18px 0!important;border-right:0!important;min-width:0}
+  .faq summary{font-size:1rem;line-height:1.45}
+  .faq details p{padding-right:0}
+
+  .footer{margin-top:48px;padding:26px 0 34px}
+  .footer-inner{display:block}
+  .footer-inner>div+div{margin-top:14px}
+}
+
+@media (max-width: 430px){
+  .wrap,.tool-shell{width:calc(100% - 28px)!important}
+  .brand-logo{width:120px;flex-basis:120px}.brand-logo img{width:120px}
+  .nav-links{gap:14px;font-size:.78rem}
+  .tool-hero h1{font-size:clamp(3rem,14.2vw,3.55rem)!important}
+  .result h3{font-size:clamp(1.9rem,9.6vw,2.4rem)!important}
+  .side-note ul{grid-template-columns:1fr}
+}
