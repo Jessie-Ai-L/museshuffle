@@ -293,3 +293,6 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
   .tool-hero h1{font-size:2.68rem!important}
   .result{padding-left:18px;padding-right:18px}
 }
+/* v1.8 functional controls */
+.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:end}.controls .field{min-width:0}.controls select{width:100%}
+@media(max-width:700px){.controls{grid-template-columns:1fr;gap:12px}}

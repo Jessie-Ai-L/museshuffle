@@ -1,27 +1,19 @@
-# MuseShuffle v1.4.0 — Final Editorial Polish
+# MuseShuffle v1.8.0 — Generator Function Upgrade
 
-Production-ready static site for Cloudflare Workers/Assets.
+This build upgrades all 10 generators from working MVPs to more search-intent-specific tools.
 
-## What changed
-- Interactive homepage **Idea Slip** becomes a recognizable MuseShuffle brand device.
-- Removed the generic SaaS-style metric strip and replaced it with a quieter brand statement.
-- Rebalanced hero whitespace, typography, and hierarchy.
-- Refined generator index hover behavior and editorial rhythm.
-- Improved tool result presentation with subtle shuffle feedback and brand detail.
-- Upgraded the closing brand section and footer rhythm.
-- Kept all 10 generator URLs, SEO metadata, sitemap, robots.txt, and generator logic intact.
+- Random Drawing: idea type + complexity affect output
+- Drawing Prompt: difficulty now changes challenge complexity; focus filter added
+- Random Theme: context + tone filters
+- Drawing Idea: focus + meaningful difficulty
+- Random Character: genre + quick/full profile depth
+- Art Idea: medium + mood, palette suggestions
+- Art Prompt: medium + short/detailed prompt
+- Book Idea: genre-aware premise/roles/conflicts/twists + tone
+- Story Ideas: genre-aware seeds + quick/detailed mode
+- Roleplay Scenario: genre-aware settings/roles/goals/secrets + tone
+- Copy has a fallback for browsers where Clipboard API is unavailable
+- Select changes regenerate immediately
+- Controls remain responsive on mobile
 
-Deploy the whole project as before. No manual DNS changes are needed for an already-bound domain.
-
-
-## v1.7.2 mobile fix
-- Forces tool pages to a true one-column layout below 800px.
-- Prevents result cards and controls from collapsing into narrow desktop grid columns.
-- Tunes mobile typography, header, side note, actions, related tools, FAQ, and footer.
-
-
-## v1.7.2 Mobile visual polish
-- Locks iOS text scaling to 100% to prevent Safari type inflation.
-- Reduces mobile hero/tool heading scale without changing the desktop art direction.
-- Tightens the generator index, result card, CTA buttons, supporting copy, and section rhythm.
-- Adds explicit 430px and 375px safeguards.
+Deploy the contents as the next full-site build. No URL changes.

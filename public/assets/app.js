@@ -1,96 +1,30 @@
-
 let D = window.MUSE_DATA || {};
-function pick(a){ return a[Math.floor(Math.random()*a.length)] }
-function byId(id){ return document.getElementById(id) }
-function val(id, fallback="Any"){ const el=byId(id); return el?el.value:fallback }
-function copyResult(){
-  const r=byId("result");
-  navigator.clipboard.writeText(r.innerText.trim()).then(()=>{byId("copy-status").textContent="Copied.";setTimeout(()=>byId("copy-status").textContent="",1600)})
-}
-function generate(mode){
-  const active=byId("result"); if(active){active.classList.remove("is-shuffling"); void active.offsetWidth; active.classList.add("is-shuffling");}
-  let title="", body="", list=[];
-  const genre=val("genre");
-  const difficulty=val("difficulty");
-  const context=val("context");
-  const medium=val("medium");
-  switch(mode){
-    case "drawing_random":
-      title = `${pick(D.subjects)} ${pick(D.actions)}`;
-      body = `Draw ${title.toLowerCase()} ${pick(D.settings)}.`;
-      break;
-    case "drawing_prompt":
-      title = "Your drawing prompt";
-      list = [
-        `Subject: ${pick(D.subjects)} ${pick(D.actions)}`,
-        `Setting: ${pick(D.settings)}`,
-        `Mood: ${pick(D.moods)}`,
-        `Style: ${pick(D.styles)}`,
-        `Constraint: ${pick(D.constraints)}`,
-        `Difficulty: ${difficulty}`
-      ];
-      break;
-    case "theme":
-      title = pick(D.themes);
-      body = context==="Any" ? `Use “${title}” as the central theme for your next creative project.` : `Use “${title}” as the central theme for your next ${context.toLowerCase()} project.`;
-      break;
-    case "drawing_idea":
-      title = `Draw ${pick(D.subjects)} ${pick(D.settings)}`;
-      list = [`Visual twist: ${pick(D.constraints)}`,`Mood: ${pick(D.moods)}`,`Difficulty: ${difficulty}`];
-      break;
-    case "character":
-      title = pick(D.names);
-      list = [
-        `Role: ${pick(D.roles)}`,
-        `Personality: ${pick(D.traits)}`,
-        `Flaw: ${pick(D.flaws)}`,
-        `Appearance cue: ${pick(D.styles)} influence; one memorable accessory`,
-        `Goal: ${pick(D.roleplay_goals)}`,
-        `Secret: ${pick(D.secrets)}`
-      ];
-      break;
-    case "art_idea":
-      title = `${medium==="Any"?pick(D.mediums):medium} piece: ${pick(D.themes)}`;
-      list = [`Subject: ${pick(D.subjects)} ${pick(D.settings)}`,`Mood: ${pick(D.moods)}`,`Composition challenge: ${pick(D.constraints)}`];
-      break;
-    case "art_prompt":
-      title = "Your art prompt";
-      body = `Create a ${medium==="Any"?pick(D.mediums):medium} artwork of ${pick(D.subjects)} ${pick(D.settings)}. Make it feel ${pick(D.moods)}, use ${pick(D.styles)}, and ${pick(D.constraints)}.`;
-      break;
-    case "book":
-      title = `${genre==="Any"?pick(D.genres):genre} book idea`;
-      list = [
-        `Protagonist: a ${pick(D.roles)} who is ${pick(D.traits)}`,
-        `Premise: they discover that ${pick(D.secrets).toLowerCase()}`,
-        `Conflict: they must ${pick(D.roleplay_goals)}`,
-        `Stakes: ${pick(D.stakes)}`,
-        `Twist: ${pick(D.twists)}`
-      ];
-      break;
-    case "story":
-      title = `${genre==="Any"?pick(D.genres):genre} story seed`;
-      body = `A ${pick(D.roles)} ${pick(D.settings)} is forced to ${pick(D.roleplay_goals)} after discovering that ${pick(D.secrets).toLowerCase()}. ${pick(D.twists)}.`;
-      break;
-    case "roleplay":
-      title = "Roleplay scenario";
-      list = [
-        `Setting: ${pick(D.roleplay_settings)}`,
-        `Role A: a ${pick(D.roles)} who is ${pick(D.traits)}`,
-        `Role B: a ${pick(D.roles)} who ${pick(D.flaws)}`,
-        `Objective: ${pick(D.roleplay_goals)}`,
-        `Tension: ${pick(D.secrets)}`,
-        `Opening line: ${pick(D.opening_lines)}`
-      ];
-      break;
-  }
-  const r=byId("result");
-  r.innerHTML = `<div class="meta">Freshly shuffled</div><h3>${title}</h3>${body?`<p>${body}</p>`:""}${list.length?`<ul>${list.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}`;
-}
-document.addEventListener("DOMContentLoaded",()=>{
-  const mode=document.body.dataset.mode;
-  if(mode){
-    fetch("/assets/data.json").then(r=>r.json()).then(d=>{window.MUSE_DATA=d;D=d;generate(mode)}).catch(()=>{byId("result").innerHTML="<p>Could not load generator data. Please refresh.</p>"});
-    byId("shuffle").addEventListener("click",()=>generate(mode));
-    byId("copy").addEventListener("click",copyResult);
-  }
-});
+const pick=a=>Array.isArray(a)&&a.length?a[Math.floor(Math.random()*a.length)]:"";
+const byId=id=>document.getElementById(id);
+const val=(id,fallback="Any")=>byId(id)?byId(id).value:fallback;
+const cap=s=>s?s.charAt(0).toUpperCase()+s.slice(1):s;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const subjectFor=(kind)=>{const pools={Character:D.character_subjects,Creature:D.creature_subjects,Object:D.object_subjects,Scene:D.scene_subjects};return kind&&kind!=="Anything"&&kind!=="Any"&&pools[kind]?pick(pools[kind]):pick(D.subjects)};
+const moodFor=tone=>{const map={Light:["hopeful","bright","gentle"],Dark:["ominous","melancholic","eerie"],Dreamy:["dreamlike","ethereal","surreal"],Epic:["heroic","grand","dramatic"],Playful:["playful","whimsical","cheerful"],Calm:["calm","quiet","serene"],Energetic:["energetic","bold","dynamic"],Friendly:["warm","welcoming","hopeful"],Dramatic:["dramatic","high-stakes","emotional"],Funny:["playful","awkward","witty"],Tense:["tense","uneasy","urgent"],Romantic:["tender","intimate","yearning"]};return tone&&tone!=="Any"&&map[tone]?pick(map[tone]):pick(D.moods)};
+const genreKey=g=>{if(!g||g==="Any")return null;return Object.keys(D.genre_packs||{}).find(k=>k.toLowerCase()===g.toLowerCase())||null};
+const genrePack=g=>{const k=genreKey(g);return k?D.genre_packs[k]:null};
+const randomGenre=()=>pick(Object.keys(D.genre_packs||{}));
+const article=s=>/^[aeiou]/i.test(s)?"an":"a";
+let lastSignature="";
+function copyResult(){const result=byId("result"),status=byId("copy-status");if(!result)return;const text=result.innerText.trim();const done=()=>{if(status){status.textContent="Copied.";setTimeout(()=>status.textContent="",1600)}};if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(done).catch(()=>fallbackCopy(text,done));else fallbackCopy(text,done)}
+function fallbackCopy(text,done){const t=document.createElement("textarea");t.value=text;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();done()}
+function build(mode){let title="",body="",list=[];const genre=val("genre"),difficulty=val("difficulty","Medium"),context=val("context"),medium=val("medium"),tone=val("tone");
+ switch(mode){
+ case "drawing_random":{const kind=val("drawing-type","Anything"),complexity=val("complexity","Medium"),s=subjectFor(kind),action=pick(D.actions),setting=pick(D.settings);title=`${s} ${action}`;body=complexity==="Simple"?`Draw ${s}. Focus on one clear silhouette or gesture.`:complexity==="Detailed"?`Draw ${s} ${action} ${setting}. Add ${pick(D.constraints)}, and push a ${pick(D.moods)} atmosphere.`:`Draw ${s} ${action} ${setting}.`;break}
+ case "drawing_prompt":{const focus=val("focus"),constraint=difficulty==="Easy"?pick(D.easy_constraints):difficulty==="Challenging"?pick(D.hard_constraints):pick(D.constraints);title="Your drawing prompt";if(focus==="Composition"){list=[`Composition: ${pick(D.composition_prompts||D.constraints)}`,`Setting: ${pick(D.settings)}`,`Mood: ${pick(D.moods)}`,`Style: ${pick(D.styles)}`,`Challenge: ${constraint}`,`Difficulty: ${difficulty}`]}else{const map={Character:"Character",Object:"Object",Environment:"Scene"},s=subjectFor(map[focus]||"Anything");list=[`Subject: ${s} ${pick(D.actions)}`,`Setting: ${pick(D.settings)}`,`Mood: ${pick(D.moods)}`,`Style: ${pick(D.styles)}`,`Challenge: ${constraint}`,`Difficulty: ${difficulty}`]}break}
+ case "theme":{const t=tone!=="Any"?pick(D.themes_by_tone[tone]||D.themes):pick(D.themes);title=t;body=context==="Any"?`Use “${t}” as the central theme for your next creative project.`:`Use “${t}” as the central theme for your next ${context.toLowerCase()} project. Explore it through a ${moodFor(tone)} lens.`;break}
+ case "drawing_idea":{const focus=val("focus"),s=subjectFor(focus==="Any"?"Anything":focus),constraint=difficulty==="Easy"?pick(D.easy_constraints):difficulty==="Challenging"?pick(D.hard_constraints):pick(D.constraints);title=`Draw ${s}`;list=[`Scene: ${pick(D.settings)}`,`Action: ${pick(D.actions)}`,`Visual twist: ${constraint}`,`Mood: ${pick(D.moods)}`,`Difficulty: ${difficulty}`];break}
+ case "character":{const selected=val("character-genre"),g=selected==="Any"?randomGenre():selected,pack=genrePack(g),depth=val("depth","Full"),role=pack?pick(pack.roles):pick(D.roles);title=pick(D.names);list=[`Genre: ${g}`,`Role: ${role}`,`Personality: ${pick(D.traits)}`,`Flaw: ${pick(D.flaws)}`];if(depth==="Full")list.push(`Appearance cue: ${pick(D.appearance_cues)}`,`Goal: ${pack?pick(pack.goals):pick(D.roleplay_goals)}`,`Secret: ${pack?pick(pack.secrets):pick(D.secrets)}`);break}
+ case "art_idea":{const m=medium==="Any"?pick(D.mediums):medium,mood=moodFor(tone);title=`${cap(m)} piece: ${pick(D.themes)}`;list=[`Subject: ${pick(D.subjects)}`,`Setting: ${pick(D.settings)}`,`Mood: ${mood}`,`Palette idea: ${pick(D.palettes)}`,`Composition challenge: ${pick(D.constraints)}`];break}
+ case "art_prompt":{const m=medium==="Any"?pick(D.mediums):medium,detail=val("prompt-length","Detailed"),s=pick(D.subjects),setting=pick(D.settings),mood=pick(D.moods),style=pick(D.styles);title="Your art prompt";body=detail==="Short"?`Create a ${m} artwork featuring ${s} ${setting}.`:`Create a ${m} artwork featuring ${s} ${setting}. Give it a ${mood} mood, use a ${style} approach, explore ${pick(D.palettes)}, and ${pick(D.constraints)}.`;break}
+ case "book":{const g=genre==="Any"?randomGenre():genre,pack=genrePack(g),bt=val("book-tone"),role=pack?pick(pack.roles):pick(D.roles),premise=pack?pick(pack.premises):pick(D.generic_premises),goal=pack?pick(pack.goals):pick(D.roleplay_goals),twist=pack?pick(pack.twists):pick(D.twists);title=`${g} book idea`;list=[`Protagonist: ${article(role)} ${role} who is ${pick(D.traits)}`,`Premise: ${cap(premise)}`,`Central conflict: ${cap(goal)}`,`Stakes: ${cap(pick(D.stakes))}`,`Twist: ${cap(twist)}`];if(bt!=="Any")list.push(`Tone: ${bt}`);break}
+ case "story":{const g=genre==="Any"?randomGenre():genre,pack=genrePack(g),detail=val("story-length","Detailed"),role=pack?pick(pack.roles):pick(D.roles),premise=pack?pick(pack.premises):pick(D.generic_premises),goal=pack?pick(pack.goals):pick(D.roleplay_goals),twist=pack?pick(pack.twists):pick(D.twists),setting=pack?.settings?pick(pack.settings):pick(D.settings);title=`${g} story seed`;body=`${cap(article(role))} ${role} in ${setting.replace(/^(in|at|on|inside|beside)\s+/i,"")} is pulled into trouble when ${premise}. Their immediate goal is to ${goal}.`;if(detail==="Detailed")list=[`Complication: ${cap(twist)}`,`Stakes: ${cap(pick(D.stakes))}`,`Opening image: ${cap(pick(D.opening_images))}`];break}
+ case "roleplay":{const selected=val("rp-genre"),g=selected==="Any"?randomGenre():selected,pack=genrePack(g),rt=val("rp-tone"),roles=pack?.roles||D.roles,goals=pack?.goals||D.roleplay_goals,secrets=pack?.secrets||D.secrets,r1=pick(roles),r2=pick(roles.filter(x=>x!==r1));title="Roleplay scenario";list=[`Genre: ${g}`,`Setting: ${pack?.settings?pick(pack.settings):pick(D.roleplay_settings)}`,`Role A: ${article(r1)} ${r1} who is ${pick(D.traits)}`,`Role B: ${article(r2)} ${r2} who ${pick(D.flaws)}`,`Objective: ${cap(pick(goals))}`,`Tension: ${cap(pick(secrets))}`,`Opening line: ${pick(D.opening_lines)}`];if(rt!=="Any")list.splice(1,0,`Tone: ${rt} (${moodFor(rt)})`);break}
+ } return {title,body,list}}
+function generate(mode){const active=byId("result");if(active){active.classList.remove("is-shuffling");void active.offsetWidth;active.classList.add("is-shuffling")}let out,tries=0;do{out=build(mode);tries++}while(JSON.stringify(out)===lastSignature&&tries<8);lastSignature=JSON.stringify(out);const r=byId("result");if(!r)return;r.innerHTML=`<div class="meta">Freshly shuffled</div><h3>${esc(out.title)}</h3>${out.body?`<p>${esc(out.body)}</p>`:""}${out.list.length?`<ul>${out.list.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""}`}
+document.addEventListener("DOMContentLoaded",()=>{const mode=document.body.dataset.mode;if(!mode)return;fetch("/assets/data.json?v=1.8.1").then(r=>{if(!r.ok)throw new Error("data");return r.json()}).then(d=>{window.MUSE_DATA=d;D=d;generate(mode)}).catch(()=>{const r=byId("result");if(r)r.innerHTML="<p>Could not load generator data. Please refresh.</p>"});byId("shuffle")?.addEventListener("click",()=>generate(mode));byId("copy")?.addEventListener("click",copyResult);document.querySelectorAll(".controls select:not([disabled])").forEach(el=>el.addEventListener("change",()=>generate(mode)))})

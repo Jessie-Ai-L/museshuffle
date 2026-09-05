@@ -1,1 +1,647 @@
-{"subjects": ["a fox", "an old lighthouse", "a tiny robot", "a glass greenhouse", "a sleeping dragon", "a street musician", "a jellyfish", "a mountain cabin", "a crow", "an antique bicycle", "a masked traveler", "a giant mushroom", "a paper boat", "a desert observatory", "a curious cat"], "settings": ["in a flooded city", "on a windy cliff", "inside an abandoned mall", "under a violet sky", "at a crowded night market", "in a quiet library", "on a floating island", "beside a frozen lake", "in a forgotten garden", "inside a train at midnight", "on another planet", "at the edge of a forest"], "actions": ["collecting lost keys", "waiting for a signal", "carrying something impossible", "trying to stay hidden", "building a tiny shelter", "following a trail of light", "opening a mysterious package", "protecting a fragile object", "searching for a missing map", "celebrating alone"], "moods": ["peaceful", "eerie", "playful", "melancholic", "hopeful", "surreal", "tense", "dreamlike", "cozy", "mysterious"], "styles": ["loose ink sketch", "bold graphic shapes", "watercolor study", "charcoal value study", "storybook illustration", "minimal line art", "retro poster", "cinematic concept art", "collage-inspired composition", "limited-palette painting"], "constraints": ["use only three values", "include one strong silhouette", "avoid straight lines", "make the focal point tiny", "use a limited palette", "show motion without blur", "hide a visual joke", "include an unusual shadow", "crop the subject dramatically", "use negative space as a key shape"], "themes": ["beautiful decay", "quiet rebellion", "borrowed time", "second chances", "tiny worlds", "miscommunication", "rituals and routines", "home in an unexpected place", "nature reclaiming technology", "things left unsaid", "the cost of curiosity", "imperfect symmetry", "memory vs reality", "joy in ordinary objects", "a secret in plain sight"], "mediums": ["watercolor", "gouache", "colored pencil", "ink", "acrylic", "charcoal", "digital painting", "cut-paper collage", "marker", "mixed media"], "genres": ["fantasy", "romance", "mystery", "science fiction", "thriller", "historical fiction", "cozy fantasy", "dark academia", "adventure", "horror"], "roles": ["archivist", "mechanic", "botanist", "smuggler", "apprentice magician", "radio host", "cartographer", "night-shift nurse", "museum guard", "retired detective", "street photographer", "chef", "storm chaser", "bookbinder", "salvage diver"], "traits": ["fiercely loyal", "dryly funny", "painfully curious", "meticulous", "restless", "warm but guarded", "reckless under pressure", "quietly competitive", "idealistic", "suspicious of authority", "overconfident", "soft-spoken and stubborn"], "flaws": ["avoids asking for help", "cannot let go of old grudges", "takes unnecessary risks", "lies to protect people", "overthinks simple choices", "needs to be right", "runs when things become personal", "trusts strangers too quickly", "hides mistakes until they grow"], "secrets": ["once betrayed their closest friend", "is using a false name", "knows why a local landmark disappeared", "has been receiving letters from someone believed dead", "caused the accident everyone blames on someone else", "is secretly planning to leave town", "owns an object that should not exist"], "names": ["Mara Vale", "Eli Mercer", "Nina Rowe", "Theo Arden", "Iris Quinn", "Jonah Voss", "Mina Hale", "Cass Rowan", "Leo Marr", "Aya Sterling", "Noah Briar", "Tess Calder", "Milo Wren", "Rhea Knox", "Sam Orin"], "stakes": ["their family home will be lost", "the town will discover what they hid", "someone innocent will take the blame", "a fragile alliance will collapse", "they will lose the only person who trusts them", "a dangerous secret will become public", "the mission will strand everyone far from home"], "twists": ["the antagonist is trying to prevent something worse", "the missing person left on purpose", "the map is accurate, but for a different century", "the object everyone wants is a decoy", "the protagonist caused the problem years ago", "the safest place is the one everyone fears", "the apparent coincidence was carefully staged"], "roleplay_settings": ["a train stalled between stations", "a closing museum after midnight", "a storm shelter during a citywide blackout", "a village festival where neither character belongs", "a remote research station", "a crowded airport after every flight is canceled", "a bookstore during an unexpected lock-in", "a royal banquet just before a scandal breaks", "a roadside motel in heavy rain", "a starship with one working escape pod"], "roleplay_goals": ["convince the other person to stay", "hide the truth long enough to finish the task", "retrieve an item without admitting why it matters", "get an apology without asking for one", "decide who should take the risk", "work together despite a recent betrayal", "find out what the other person really knows", "make a deal before time runs out"], "opening_lines": ["“You weren't supposed to find that.”", "“If we miss this chance, there won't be another one.”", "“Tell me you didn't open it.”", "“I can explain, but you won't like the explanation.”", "“We have ten minutes before they come back.”", "“You remember this place, don't you?”", "“I need you to trust me for exactly five minutes.”"]}
+{
+  "subjects": [
+    "a fox",
+    "an old lighthouse",
+    "a tiny robot",
+    "a glass greenhouse",
+    "a sleeping dragon",
+    "a street musician",
+    "a jellyfish",
+    "a mountain cabin",
+    "a crow",
+    "an antique bicycle",
+    "a masked traveler",
+    "a giant mushroom",
+    "a paper boat",
+    "a desert observatory",
+    "a curious cat"
+  ],
+  "settings": [
+    "in a flooded city",
+    "on a windy cliff",
+    "inside an abandoned mall",
+    "under a violet sky",
+    "at a crowded night market",
+    "in a quiet library",
+    "on a floating island",
+    "beside a frozen lake",
+    "in a forgotten garden",
+    "inside a train at midnight",
+    "on another planet",
+    "at the edge of a forest"
+  ],
+  "actions": [
+    "collecting lost keys",
+    "waiting for a signal",
+    "carrying something impossible",
+    "trying to stay hidden",
+    "building a tiny shelter",
+    "following a trail of light",
+    "opening a mysterious package",
+    "protecting a fragile object",
+    "searching for a missing map",
+    "celebrating alone"
+  ],
+  "moods": [
+    "peaceful",
+    "eerie",
+    "playful",
+    "melancholic",
+    "hopeful",
+    "surreal",
+    "tense",
+    "dreamlike",
+    "cozy",
+    "mysterious"
+  ],
+  "styles": [
+    "loose ink sketch",
+    "bold graphic shapes",
+    "watercolor study",
+    "charcoal value study",
+    "storybook illustration",
+    "minimal line art",
+    "retro poster",
+    "cinematic concept art",
+    "collage-inspired composition",
+    "limited-palette painting"
+  ],
+  "constraints": [
+    "use only three values",
+    "include one strong silhouette",
+    "avoid straight lines",
+    "make the focal point tiny",
+    "use a limited palette",
+    "show motion without blur",
+    "hide a visual joke",
+    "include an unusual shadow",
+    "crop the subject dramatically",
+    "use negative space as a key shape"
+  ],
+  "themes": [
+    "beautiful decay",
+    "quiet rebellion",
+    "borrowed time",
+    "second chances",
+    "tiny worlds",
+    "miscommunication",
+    "rituals and routines",
+    "home in an unexpected place",
+    "nature reclaiming technology",
+    "things left unsaid",
+    "the cost of curiosity",
+    "imperfect symmetry",
+    "memory vs reality",
+    "joy in ordinary objects",
+    "a secret in plain sight"
+  ],
+  "mediums": [
+    "watercolor",
+    "gouache",
+    "colored pencil",
+    "ink",
+    "acrylic",
+    "charcoal",
+    "digital painting",
+    "cut-paper collage",
+    "marker",
+    "mixed media"
+  ],
+  "genres": [
+    "fantasy",
+    "romance",
+    "mystery",
+    "science fiction",
+    "thriller",
+    "historical fiction",
+    "cozy fantasy",
+    "dark academia",
+    "adventure",
+    "horror"
+  ],
+  "roles": [
+    "archivist",
+    "mechanic",
+    "botanist",
+    "smuggler",
+    "apprentice magician",
+    "radio host",
+    "cartographer",
+    "night-shift nurse",
+    "museum guard",
+    "retired detective",
+    "street photographer",
+    "chef",
+    "storm chaser",
+    "bookbinder",
+    "salvage diver"
+  ],
+  "traits": [
+    "fiercely loyal",
+    "dryly funny",
+    "painfully curious",
+    "meticulous",
+    "restless",
+    "warm but guarded",
+    "reckless under pressure",
+    "quietly competitive",
+    "idealistic",
+    "suspicious of authority",
+    "overconfident",
+    "soft-spoken and stubborn"
+  ],
+  "flaws": [
+    "avoids asking for help",
+    "cannot let go of old grudges",
+    "takes unnecessary risks",
+    "lies to protect people",
+    "overthinks simple choices",
+    "needs to be right",
+    "runs when things become personal",
+    "trusts strangers too quickly",
+    "hides mistakes until they grow"
+  ],
+  "secrets": [
+    "once betrayed their closest friend",
+    "is using a false name",
+    "knows why a local landmark disappeared",
+    "has been receiving letters from someone believed dead",
+    "caused the accident everyone blames on someone else",
+    "is secretly planning to leave town",
+    "owns an object that should not exist"
+  ],
+  "names": [
+    "Mara Vale",
+    "Eli Mercer",
+    "Nina Rowe",
+    "Theo Arden",
+    "Iris Quinn",
+    "Jonah Voss",
+    "Mina Hale",
+    "Cass Rowan",
+    "Leo Marr",
+    "Aya Sterling",
+    "Noah Briar",
+    "Tess Calder",
+    "Milo Wren",
+    "Rhea Knox",
+    "Sam Orin"
+  ],
+  "stakes": [
+    "their family home will be lost",
+    "the town will discover what they hid",
+    "someone innocent will take the blame",
+    "a fragile alliance will collapse",
+    "they will lose the only person who trusts them",
+    "a dangerous secret will become public",
+    "the mission will strand everyone far from home"
+  ],
+  "twists": [
+    "the antagonist is trying to prevent something worse",
+    "the missing person left on purpose",
+    "the map is accurate, but for a different century",
+    "the object everyone wants is a decoy",
+    "the protagonist caused the problem years ago",
+    "the safest place is the one everyone fears",
+    "the apparent coincidence was carefully staged"
+  ],
+  "roleplay_settings": [
+    "a train stalled between stations",
+    "a closing museum after midnight",
+    "a storm shelter during a citywide blackout",
+    "a village festival where neither character belongs",
+    "a remote research station",
+    "a crowded airport after every flight is canceled",
+    "a bookstore during an unexpected lock-in",
+    "a royal banquet just before a scandal breaks",
+    "a roadside motel in heavy rain",
+    "a starship with one working escape pod"
+  ],
+  "roleplay_goals": [
+    "convince the other person to stay",
+    "hide the truth long enough to finish the task",
+    "retrieve an item without admitting why it matters",
+    "get an apology without asking for one",
+    "decide who should take the risk",
+    "work together despite a recent betrayal",
+    "find out what the other person really knows",
+    "make a deal before time runs out"
+  ],
+  "opening_lines": [
+    "“You weren't supposed to find that.”",
+    "“If we miss this chance, there won't be another one.”",
+    "“Tell me you didn't open it.”",
+    "“I can explain, but you won't like the explanation.”",
+    "“We have ten minutes before they come back.”",
+    "“You remember this place, don't you?”",
+    "“I need you to trust me for exactly five minutes.”"
+  ],
+  "character_subjects": [
+    "a retired knight",
+    "a street magician",
+    "a young inventor",
+    "a masked courier",
+    "a wandering chef",
+    "an absent-minded detective",
+    "a fearless botanist",
+    "a shy astronaut",
+    "a lighthouse keeper",
+    "a rebellious princess"
+  ],
+  "creature_subjects": [
+    "a giant mushroom creature",
+    "a tiny dragon",
+    "a moonlit fox",
+    "a clockwork bird",
+    "a sleepy sea monster",
+    "a crystal-backed turtle",
+    "a ghost cat",
+    "a moss-covered golem"
+  ],
+  "object_subjects": [
+    "an antique bicycle",
+    "a mysterious package",
+    "a cracked pocket watch",
+    "a floating lantern",
+    "an overgrown vending machine",
+    "a forgotten key",
+    "a ceremonial mask",
+    "a glass compass"
+  ],
+  "scene_subjects": [
+    "a market at midnight",
+    "an abandoned greenhouse",
+    "a train above the clouds",
+    "a flooded library",
+    "a rooftop garden",
+    "a festival in the rain",
+    "a campsite under two moons",
+    "a hidden workshop"
+  ],
+  "easy_constraints": [
+    "use only simple shapes",
+    "limit the sketch to 10 minutes",
+    "use one clear light source",
+    "keep the background minimal",
+    "use only three major values"
+  ],
+  "hard_constraints": [
+    "draw from an unusual low angle",
+    "use dramatic foreshortening",
+    "tell the story without showing any faces",
+    "use a complex reflected light source",
+    "build the composition around negative space",
+    "include foreground, midground, and background storytelling"
+  ],
+  "appearance_cues": [
+    "a weathered coat with one bright pin",
+    "an immaculate uniform with worn boots",
+    "oversized glasses and ink-stained fingers",
+    "a patched travel cloak and silver earring",
+    "a practical jacket covered in tiny pockets",
+    "a formal outfit with one deliberately mismatched glove"
+  ],
+  "palettes": [
+    "a limited warm palette",
+    "cool blues with one warm accent",
+    "earth tones with muted gold",
+    "high-contrast black, cream, and red",
+    "soft desaturated pastels",
+    "deep greens with violet shadows"
+  ],
+  "opening_images": [
+    "an unopened letter on a rain-soaked doorstep",
+    "a light turning on in an empty building",
+    "two strangers reaching for the same object",
+    "a train arriving where no station should exist",
+    "a celebration interrupted by a sudden silence",
+    "a familiar room with one impossible detail"
+  ],
+  "themes_by_tone": {
+    "Light": [
+      "Second chances",
+      "Unexpected friendship",
+      "Small wonders",
+      "A perfect day",
+      "New beginnings"
+    ],
+    "Dark": [
+      "The price of memory",
+      "Something beneath the surface",
+      "A beautiful lie",
+      "The last safe place",
+      "Borrowed time"
+    ],
+    "Dreamy": [
+      "Between waking and sleep",
+      "Messages from the moon",
+      "A city made of clouds",
+      "Forgotten constellations",
+      "The color of memory"
+    ],
+    "Epic": [
+      "Against impossible odds",
+      "The final frontier",
+      "Rise of a forgotten kingdom",
+      "The long return home",
+      "A promise across generations"
+    ],
+    "Playful": [
+      "Things with tiny hats",
+      "A very serious misunderstanding",
+      "Secret lives of household objects",
+      "The world upside down",
+      "An unlikely competition"
+    ]
+  },
+  "genre_packs": {
+    "Fantasy": {
+      "roles": [
+        "disgraced knight",
+        "apprentice mage",
+        "monster hunter",
+        "royal cartographer",
+        "village healer"
+      ],
+      "goals": [
+        "break an ancient curse",
+        "recover a stolen relic",
+        "cross a forbidden kingdom",
+        "protect a secret heir"
+      ],
+      "secrets": [
+        "magic is disappearing for a reason",
+        "the enemy shares their bloodline",
+        "the prophecy was deliberately mistranslated"
+      ],
+      "premises": [
+        "an ordinary map begins redrawing the kingdom each night",
+        "a minor spell exposes a conspiracy inside the royal court",
+        "the last dragon asks the wrong person for help"
+      ],
+      "twists": [
+        "the supposed villain has been preventing a worse disaster",
+        "the magical artifact chooses someone else",
+        "the kingdom exists inside a repeating day"
+      ],
+      "settings": [
+        "a border kingdom under permanent twilight",
+        "a floating monastery",
+        "a city built around a sleeping giant"
+      ]
+    },
+    "Romance": {
+      "roles": [
+        "rival baker",
+        "travel photographer",
+        "bookshop owner",
+        "wedding planner",
+        "childhood friend"
+      ],
+      "goals": [
+        "save a shared project without falling for their rival",
+        "keep a promise that forces them to work together",
+        "choose between a safe future and an unexpected relationship"
+      ],
+      "secrets": [
+        "one of them has already turned down a life-changing offer",
+        "their families share an old unresolved feud",
+        "the anonymous person they trust is standing beside them"
+      ],
+      "premises": [
+        "two rivals are forced to run the same struggling business for one summer",
+        "a mistaken reservation leaves two strangers sharing an impossible itinerary",
+        "a series of anonymous notes connects two people who already know each other"
+      ],
+      "twists": [
+        "the apparent obstacle was created by a well-meant lie",
+        "their dream opportunities arrive in different cities",
+        "the person helping them move on is the person they are falling for"
+      ],
+      "settings": [
+        "a coastal town in the off-season",
+        "a crowded city during a summer blackout",
+        "a family-run inn before a wedding"
+      ]
+    },
+    "Mystery": {
+      "roles": [
+        "archivist",
+        "private investigator",
+        "journalist",
+        "forensic artist",
+        "museum curator"
+      ],
+      "goals": [
+        "identify who altered the evidence",
+        "solve a disappearance everyone else has accepted",
+        "decode a pattern hidden in ordinary records"
+      ],
+      "secrets": [
+        "the victim planned the entire first clue",
+        "the key witness is protecting the wrong person",
+        "the crime scene was staged years in advance"
+      ],
+      "premises": [
+        "a routine archive request reveals photographs of events that never happened",
+        "a missing person keeps making small purchases around the city",
+        "every suspect receives the same anonymous alibi"
+      ],
+      "twists": [
+        "the investigator unknowingly supplied the missing clue",
+        "two unrelated cases are the same event seen from different sides",
+        "the person believed dead has been guiding the investigation"
+      ],
+      "settings": [
+        "a closed museum after midnight",
+        "a rain-soaked university town",
+        "an isolated hotel during a power outage"
+      ]
+    },
+    "Science fiction": {
+      "roles": [
+        "salvage pilot",
+        "memory engineer",
+        "xenobiologist",
+        "station mechanic",
+        "diplomatic translator"
+      ],
+      "goals": [
+        "stop a failing habitat before evacuation becomes impossible",
+        "make first contact without revealing a dangerous truth",
+        "recover a lost signal from outside known space"
+      ],
+      "secrets": [
+        "their memories were edited before the mission",
+        "the alien signal is a reply to a message humanity has not sent yet",
+        "the station AI is protecting someone rather than malfunctioning"
+      ],
+      "premises": [
+        "a maintenance worker finds a room missing from every station blueprint",
+        "a colony receives tomorrow’s emergency broadcasts one day early",
+        "a translator discovers the alien language contains memories"
+      ],
+      "twists": [
+        "the rescue mission is actually the first arrival",
+        "the hostile intelligence is a future version of their own system",
+        "Earth has been receiving the same warning for decades"
+      ],
+      "settings": [
+        "a failing orbital habitat",
+        "a generation ship approaching an unknown world",
+        "a research base beneath an alien ocean"
+      ]
+    },
+    "Thriller": {
+      "roles": [
+        "security analyst",
+        "emergency dispatcher",
+        "investigative reporter",
+        "former intelligence officer",
+        "corporate auditor"
+      ],
+      "goals": [
+        "expose a conspiracy before the evidence disappears",
+        "keep a witness alive until dawn",
+        "find who is manipulating a citywide emergency system"
+      ],
+      "secrets": [
+        "their trusted source is using a stolen identity",
+        "the threat was designed to force one specific response",
+        "someone inside the investigation is feeding live updates to the enemy"
+      ],
+      "premises": [
+        "a routine audit uncovers payments scheduled for crimes that have not happened",
+        "an emergency dispatcher receives a call from their own number",
+        "a journalist is sent proof of a disaster hours before it occurs"
+      ],
+      "twists": [
+        "the chase is a diversion from a quieter target",
+        "the protected witness engineered the crisis",
+        "the evidence is genuine but points to the wrong motive"
+      ],
+      "settings": [
+        "a city during a transit shutdown",
+        "an airport locked down overnight",
+        "a remote conference center cut off by a storm"
+      ]
+    },
+    "Horror": {
+      "roles": [
+        "night caretaker",
+        "urban explorer",
+        "rural doctor",
+        "sound archivist",
+        "grief counselor"
+      ],
+      "goals": [
+        "survive until sunrise without answering the knocking",
+        "discover why everyone dreams of the same room",
+        "leave a place that changes whenever nobody is looking"
+      ],
+      "secrets": [
+        "the haunting only imitates people who are still alive",
+        "the building remembers previous occupants better than they do",
+        "the warning signs were written by their future self"
+      ],
+      "premises": [
+        "a sound archivist finds their own voice on a century-old recording",
+        "a small town removes one house from every map each winter",
+        "a hospital corridor grows one door longer every night"
+      ],
+      "twists": [
+        "escaping is what releases the threat",
+        "the monster has been keeping something else outside",
+        "the missing person returned long ago but nobody noticed"
+      ],
+      "settings": [
+        "an empty hospital wing",
+        "a village surrounded by fog",
+        "a house that appears only during storms"
+      ]
+    },
+    "Adventure": {
+      "roles": [
+        "treasure diver",
+        "mountain guide",
+        "reluctant courier",
+        "field archaeologist",
+        "expedition medic"
+      ],
+      "goals": [
+        "reach a hidden place before a rival expedition",
+        "deliver an object across impossible terrain",
+        "rescue a team stranded beyond the mapped route"
+      ],
+      "secrets": [
+        "the destination was intentionally erased from maps",
+        "their employer wants the discovery destroyed",
+        "the rival expedition is following a different version of the same map"
+      ],
+      "premises": [
+        "a broken compass points toward a place that moves each week",
+        "an expedition finds a road beneath a retreating glacier",
+        "a courier must cross a border that officially does not exist"
+      ],
+      "twists": [
+        "the treasure is a route rather than an object",
+        "the rival has been leaving warnings, not traps",
+        "the destination is trying to stay hidden"
+      ],
+      "settings": [
+        "a storm-battered archipelago",
+        "a desert of shifting ruins",
+        "a mountain pass abandoned for a century"
+      ]
+    },
+    "Contemporary": {
+      "roles": [
+        "community organizer",
+        "freelance designer",
+        "teacher",
+        "restaurant owner",
+        "podcast producer"
+      ],
+      "goals": [
+        "save a neighborhood project",
+        "repair a damaged friendship",
+        "solve a problem nobody wants to admit exists"
+      ],
+      "secrets": [
+        "a harmless local tradition began as a cover story",
+        "their biggest critic has been anonymously helping them",
+        "a family story everyone repeats is completely wrong"
+      ],
+      "premises": [
+        "a neighborhood group inherits a building nobody knows how to use",
+        "a viral mistake forces two strangers to cooperate",
+        "an old voicemail changes the meaning of a family argument"
+      ],
+      "twists": [
+        "the public failure creates the opportunity they actually needed",
+        "the missing piece was deliberately hidden to protect someone",
+        "the person resisting change has the strongest reason to want it"
+      ],
+      "settings": [
+        "a busy neighborhood café",
+        "a community center before a major event",
+        "a small apartment building full of strangers"
+      ]
+    }
+  },
+  "composition_prompts": [
+    "frame the subject with a strong foreground shape",
+    "build the image around a clear diagonal",
+    "place the focal point near the edge of the frame",
+    "use repeating shapes to lead the eye",
+    "create depth with three distinct planes",
+    "make negative space carry half the composition"
+  ],
+  "generic_premises": [
+    "an ordinary errand reveals a secret nobody was meant to find",
+    "a routine job becomes personal when a familiar name appears in the evidence",
+    "a stranger arrives with proof that a long-held belief is false",
+    "a small mistake exposes a much larger hidden conflict",
+    "an unexpected message forces them to revisit a choice they thought was settled"
+  ]
+}
