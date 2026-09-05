@@ -14,3 +14,4 @@ npx wrangler deploy
 ```
 
 Version: 1.0.1 deploy fix.
+Deployment connection test.
