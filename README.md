@@ -14,7 +14,14 @@ Production-ready static site for Cloudflare Workers/Assets.
 Deploy the whole project as before. No manual DNS changes are needed for an already-bound domain.
 
 
-## v1.7.1 mobile fix
+## v1.7.2 mobile fix
 - Forces tool pages to a true one-column layout below 800px.
 - Prevents result cards and controls from collapsing into narrow desktop grid columns.
 - Tunes mobile typography, header, side note, actions, related tools, FAQ, and footer.
+
+
+## v1.7.2 Mobile visual polish
+- Locks iOS text scaling to 100% to prevent Safari type inflation.
+- Reduces mobile hero/tool heading scale without changing the desktop art direction.
+- Tightens the generator index, result card, CTA buttons, supporting copy, and section rhythm.
+- Adds explicit 430px and 375px safeguards.
