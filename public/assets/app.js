@@ -8,6 +8,7 @@ function copyResult(){
   navigator.clipboard.writeText(r.innerText.trim()).then(()=>{byId("copy-status").textContent="Copied.";setTimeout(()=>byId("copy-status").textContent="",1600)})
 }
 function generate(mode){
+  const active=byId("result"); if(active){active.classList.remove("is-shuffling"); void active.offsetWidth; active.classList.add("is-shuffling");}
   let title="", body="", list=[];
   const genre=val("genre");
   const difficulty=val("difficulty");
