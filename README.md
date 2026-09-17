@@ -27,3 +27,7 @@ Deploy the contents as the next full-site build. No URL changes.
 
 ## v1.13.0 — Drawing Idea SEO
 Expanded Drawing Idea Generator with intent-focused content, FAQ structured data, social cards, image dimensions, and sitemap lastmod.
+
+
+## v1.15.0 — Random Character SEO
+Expanded the Random Character Generator with unique intent-focused content, examples, FAQ schema, social metadata, image dimensions, and sitemap lastmod.
