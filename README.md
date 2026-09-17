@@ -23,3 +23,7 @@ Deploy the contents as the next full-site build. No URL changes.
 - Fixes Book Idea Generator tone-selection runtime error that froze results.
 - Genre and Tone now both affect output.
 - Cache-busts app/data assets to ensure browsers load the fix.
+
+
+## v1.13.0 — Drawing Idea SEO
+Expanded Drawing Idea Generator with intent-focused content, FAQ structured data, social cards, image dimensions, and sitemap lastmod.
