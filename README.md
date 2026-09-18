@@ -31,3 +31,10 @@ Expanded Drawing Idea Generator with intent-focused content, FAQ structured data
 
 ## v1.15.0 — Random Character SEO
 Expanded the Random Character Generator with unique intent-focused content, examples, FAQ schema, social metadata, image dimensions, and sitemap lastmod.
+
+
+## v1.17.0 — Random Theme Internal Link Boost
+- Added one contextual body link to `/random-theme-generator/` from each of the other 9 tool pages.
+- Used varied, natural anchor text and page-specific context.
+- Made a small real content update to the Random Theme related-tools guidance and set its sitemap `lastmod` to 2026-09-18.
+- No title, H1, meta description, generator logic, or previously approved SEO copy was changed on the optimized pages.
